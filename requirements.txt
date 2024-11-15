@@ -1,3 +1,8 @@
+
+# In requirements.txt or installation script
+pywin32==306; platform_system == "Windows"
+
+
 aenum==2.2.6
 altair==5.4.1
 anyio==4.4.0
@@ -176,3 +181,7 @@ websockets==12.0
 wheel==0.44.0
 whitenoise==6.7.0
 xhtml2pdf==0.2.16
+
+# In requirements.txt or installation script
+pywin32==306; platform_system == "Windows"
+
