@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load i18n static %}
 
-{% block title %}Login{% endblock title %}
-{% comment %} {% block bodyclass %}{{ block.super }} login{% endblock %}
+{% block title %}{% endblock title %}
+{% comment %} {% block bodyclass %}{{ block.super }} {% endblock %}
 
 {% block usertools %}{% endblock %}
 
@@ -14,10 +14,10 @@
 
 {% block content %}
 	<div class="container">
-		<div class="row justify-content-center mt-6 mb-8">
+		<div class=" mt-6 mb-8">
 			<div class="col-lg-6 col-12 text-center">
-				<div class="login-card">
-					<div class="login-card-header">
+				<div class="-card">
+					<div class="-card-header">
 						<h3>Welcome</h3>
 					</div>
 					<div class="mx-5">
@@ -32,7 +32,7 @@
 							</p>
 						{% endif %}
 
-						<form class="login-form" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+						<form class="-form" action="{{ app_path }}" method="post" id="-form">{% csrf_token %}
 
 							<div class="form-group mb-3">
 								<div class="input-group mb-2">
@@ -57,7 +57,7 @@
 							</div>
 							
 							<div class="text-center">
-								<input class="login-btn my-4 pl-5 pr-5 text-capitalize" type="submit" value="{% trans 'Log in' %}">
+								<input class="-btn my-4 pl-5 pr-5 text-capitalize" type="submit" value="{% trans 'Log in' %}">
 							</div>
 						</form>
 
