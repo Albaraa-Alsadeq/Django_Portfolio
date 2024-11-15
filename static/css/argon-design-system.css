@@ -18881,14 +18881,9 @@ textarea[resize="horizontal"] {
   font-size: 4.25rem;
 }
 
-:root {
-  --icon-size-xl: 3rem; /* Set the actual value */
-}
-
 .icon-xl+.icon-text {
-  width: calc(100% - var(--icon-size-xl) - 1);
+  width: calc(100% - $icon-size-xl - 1);
 }
-
 
 .icon-lg {
   width: 4rem;
@@ -18900,24 +18895,37 @@ textarea[resize="horizontal"] {
   font-size: 3.25rem;
 }
 
-:root {
-  --icon-size-lg: 2rem;
-  --icon-size-sm: 1.5rem;
-  --icon-size-xs: 1rem;
+.icon-lg+.icon-text {
+  width: calc(100% - $icon-size-lg - 1);
 }
 
-.icon-lg+.icon-text {
-  width: calc(100% - var(--icon-size-lg) - 1);
+.icon-sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon-sm i,
+.icon-sm svg {
+  font-size: 1.25rem;
 }
 
 .icon-sm+.icon-text {
-  width: calc(100% - var(--icon-size-sm) - 1);
+  width: calc(100% - $icon-size-sm - 1);
+}
+
+.icon-xs {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-xs i,
+.icon-xs svg {
+  font-size: 0.5rem !important;
 }
 
 .icon-xs+.icon-text {
-  width: calc(100% - var(--icon-size-xs) - 1);
+  width: calc(100% - $icon-size-xs - 1);
 }
-
 
 .icon-shape {
   padding: 12px;
@@ -24311,3 +24319,4 @@ pre>code.highlight {
   bottom: 0;
 }
 
+/*# sourceMappingURL=kit-free.css.map */
