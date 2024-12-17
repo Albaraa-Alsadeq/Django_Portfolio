@@ -7,6 +7,13 @@ import cloudinary.api
 
 import os
 
+import django_heroku
+django_heroku.settings(locals())
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
+print("Environment Variables:", os.environ)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -37,7 +44,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['albaraa-alsadeq.tech']
 
 CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
@@ -46,6 +53,18 @@ LOGIN_URL = '/dashboard/login/'
 LOGOUT_URL = '/dashboard/logout/'
 
 # Application definition
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_portfolio',
+        'USER': 'django_user',
+        'PASSWORD': '123ABczaq$',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -186,4 +205,6 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-print(f"Loaded database URL: {config('DATABASE_URL', default='NOT FOUND')}")
+print(f"Loaded DATABASE_URL: {config('DATABASE_URL', default='NOT FOUND')}")
+print(f"Database settings: {DATABASES}")
+
