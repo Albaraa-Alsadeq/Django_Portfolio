@@ -6,6 +6,9 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+
 # Define BASE_DIR early to avoid errors
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
