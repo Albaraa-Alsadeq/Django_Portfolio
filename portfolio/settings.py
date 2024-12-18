@@ -6,6 +6,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import os
+import dj_database_url
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -35,8 +36,6 @@ MIDDLEWARE = [
 # After BASE_DIR is defined, use django_heroku settings
 django_heroku.settings(locals())
 
-# Set up database configurations using dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 print("Environment Variables:", os.environ)
 
