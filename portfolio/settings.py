@@ -100,7 +100,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
-print(os.getenv('DATABASE_URL'))
 
 
 # Database settings for development and production
@@ -120,11 +119,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DB_NAME'),  # تحميل القيم من ملف .env
-            'USER': env('DB_USER'),
-            'PASSWORD': env('DB_PASSWORD'),
-            'HOST': env('DB_HOST'),
-            'PORT': env('DB_PORT'),
+            'NAME': 'portfolio_database',
+            'USER': 'postgres',
+            'PASSWORD': '123ABczaq$',
+            'HOST': 'database-1.cdkiy46kozvg.eu-north-1.rds.amazonaws.com',
+            'PORT': '5432',
         }
     }
 
