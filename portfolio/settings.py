@@ -9,7 +9,7 @@ import os
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['albaraa-portfolio.herokuapp.com', 'www.albaraa-alsadeq.tech']
+ALLOWED_HOSTS = ['albaraa-alsadeq.tech', 'localhost', '127.0.0.1']
 
 SECRET_KEY = '123ABczaq$'
 
