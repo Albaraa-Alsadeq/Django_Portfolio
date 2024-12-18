@@ -1,3 +1,4 @@
+cryptography<3.4
 aenum==2.2.6
 altair==5.4.1
 anyio==4.4.0
@@ -176,3 +177,4 @@ websocket-client==1.8.0
 websockets==12.0
 whitenoise==6.7.0
 xhtml2pdf==0.2.16
+
