@@ -87,7 +87,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'portfolio.wsgi.application'
+WSGI_APPLICATION = 'albaraaportfolio.wsgi.application'
 
 print(os.getenv('DATABASE_URL'))
 
