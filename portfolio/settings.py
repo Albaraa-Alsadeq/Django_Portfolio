@@ -5,8 +5,15 @@ import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+import os
+
 
 DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = ['albaraa-alsadeq.tech', 'www.albaraa-alsadeq.tech']
+
+SECRET_KEY = '123ABczaq$'
+
+
 
 
 # Define BASE_DIR early to avoid errors
@@ -82,8 +89,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
-# Database settings for production (Heroku) and development
-if not DEBUG:
+print(os.getenv('DATABASE_URL'))
+
+
+# Database settings for development and production
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='django_portfolio'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='123ABczaq$'),
+            'HOST': config('DB_HOST', default='localhost'),
+            'PORT': config('DB_PORT', default='5432'),
+        }
+    }
+else:
     DATABASES = {
         'default': dj_database_url.config(default=config('DATABASE_URL'))
     }
@@ -95,17 +116,6 @@ if not DEBUG:
         'API_SECRET': config('API_SECRET'),
     }
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'django_portfolio',
-            'USER': 'django_user',
-            'PASSWORD': '123ABczaq$',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
