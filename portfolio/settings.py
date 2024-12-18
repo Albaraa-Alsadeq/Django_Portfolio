@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'rest_framework',
+    'albaraaportfolio',
 ]
 
 
