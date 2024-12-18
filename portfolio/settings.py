@@ -1,17 +1,19 @@
+import os
+import django_heroku
 from decouple import config
 import dj_database_url
-
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-import os
+# Define BASE_DIR early to avoid errors
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-import django_heroku
+# After BASE_DIR is defined, use django_heroku settings
 django_heroku.settings(locals())
 
+# Set up database configurations using dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
 
 print("Environment Variables:", os.environ)
 
@@ -19,52 +21,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-
-
-
 print("Current SECRET_KEY:", config('SECRET_KEY'))
-
-
-INSTALLED_APPS = [
-    # other apps
-    'ckeditor',
-]
-
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = ['albaraa-alsadeq.tech']
-
-CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
-CORS_ALLOW_CREDENTIALS = True
-
-LOGIN_URL = '/dashboard/login/'
-LOGOUT_URL = '/dashboard/logout/'
-
-# Application definition
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_portfolio',
-        'USER': 'django_user',
-        'PASSWORD': '123ABczaq$',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -112,7 +69,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'libraries':{
-                # make your file entry here.
                 'filter_tags': 'info.templatetags.filter',
             }
         },
@@ -121,31 +77,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
-
+# Database settings for production (Heroku) and development
 if not DEBUG:
-    # Database
-    # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
     DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL')
-        )
+        'default': dj_database_url.config(default=config('DATABASE_URL'))
     }
-    
-    # Storage settings
+
+    # Configure Cloudinary for storage in production
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': config('CLOUD_NAME', default=''),
-        'API_KEY': config('API_KEY', default=''),
-        'API_SECRET': config('API_SECRET', default=''),
+        'CLOUD_NAME': config('CLOUD_NAME'),
+        'API_KEY': config('API_KEY'),
+        'API_SECRET': config('API_SECRET'),
     }
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 else:
-   DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
-
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'django_portfolio',
+            'USER': 'django_user',
+            'PASSWORD': '123ABczaq$',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -155,12 +110,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
-
-
-
 # Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -176,35 +126,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
-
+# Internationalization settings
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Correct root directory for static files
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'portfolio/static/'),
-)
+]
 
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 print(f"Loaded DATABASE_URL: {config('DATABASE_URL', default='NOT FOUND')}")
 print(f"Database settings: {DATABASES}")
-
