@@ -9,6 +9,19 @@ import cloudinary.api
 # Define BASE_DIR early to avoid errors
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # whitenoise for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
 # After BASE_DIR is defined, use django_heroku settings
 django_heroku.settings(locals())
 
@@ -41,18 +54,7 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # whitenoise for static files
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-]
 
 ROOT_URLCONF = 'portfolio.urls'
 
