@@ -1,0 +1,7 @@
+.git
+.idea
+__pycache__
+node_modules
+venv
+*.log
+*.tmp
