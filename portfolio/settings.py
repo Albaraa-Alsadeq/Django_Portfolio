@@ -10,7 +10,7 @@ import dj_database_url
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['albaraa-alsadeq.tech', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['albaraa-alsadeq.tech', 'www.albaraa-alsadeq.tech']
 
 SECRET_KEY = '123ABczaq$'
 
