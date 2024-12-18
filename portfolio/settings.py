@@ -7,6 +7,8 @@ import cloudinary.api
 
 import os
 
+from pathlib import Path
+
 import django_heroku
 django_heroku.settings(locals())
 
