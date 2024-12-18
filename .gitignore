@@ -1,0 +1,20 @@
+# Ignore Python virtual environments
+.venv/
+
+# Ignore node_modules for JavaScript projects
+node_modules/
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore log files
+*.log
+
+# Ignore local configuration files
+*.env
+
+# Ignore database files (e.g., SQLite)
+*.sqlite3
+
+# Ignore static files that will be collected by collectstatic
+static/
