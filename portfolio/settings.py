@@ -9,8 +9,8 @@ import os
 import dj_database_url
 
 
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['www.albaraa-alsadeq.tech']
+DEBUG = config('DEBUG', default=True, cast=bool)
+ALLOWED_HOSTS = ['albaraa-alsadeq.tech', 'www.albaraa-alsadeq.tech']
 
 SECRET_KEY = '123ABczaq$'
 
