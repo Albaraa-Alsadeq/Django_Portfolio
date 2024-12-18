@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'rest_framework',
-    'albaraaportfolio',
+    'portfolio',
 ]
 
 
@@ -88,7 +88,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'albaraaportfolio.wsgi.application'
+WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 print(os.getenv('DATABASE_URL'))
 
