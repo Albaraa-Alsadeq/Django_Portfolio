@@ -1,3 +1,4 @@
+
 import os
 import django_heroku
 from decouple import config
@@ -7,9 +8,19 @@ import cloudinary.uploader
 import cloudinary.api
 import os
 import dj_database_url
+from dotenv import load_dotenv
+import environ
+
+# تهيئة env
+env = environ.Env()
+environ.Env.read_env()  # تحميل المتغيرات من ملف .env
+
+load_dotenv()
 
 
-DEBUG = config('DEBUG', default=True, cast=bool)
+
+
+DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = ['albaraa-alsadeq.tech', 'www.albaraa-alsadeq.tech']
 
 SECRET_KEY = '123ABczaq$'
@@ -93,29 +104,39 @@ print(os.getenv('DATABASE_URL'))
 
 
 # Database settings for development and production
+
 if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME', default='django_portfolio'),
-            'USER': config('DB_USER', default='postgres'),
-            'PASSWORD': config('DB_PASSWORD', default='123ABczaq$'),
-            'HOST': config('DB_HOST', default='localhost'),
-            'PORT': config('DB_PORT', default='5432'),
+            'NAME': 'django_portfolio',  # قاعدة البيانات المحلية
+            'USER': 'postgres',
+            'PASSWORD': '123ABczaq$',
+            'HOST': 'localhost',
+            'PORT': '5432',
         }
     }
 else:
     DATABASES = {
-        'default': dj_database_url.config(default=config('DATABASE_URL'))
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME'),  # تحميل القيم من ملف .env
+            'USER': env('DB_USER'),
+            'PASSWORD': env('DB_PASSWORD'),
+            'HOST': env('DB_HOST'),
+            'PORT': env('DB_PORT'),
+        }
     }
 
-    # Configure Cloudinary for storage in production
+    # تكوين Cloudinary لتخزين الملفات في بيئة الإنتاج
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': config('CLOUD_NAME'),
-        'API_KEY': config('API_KEY'),
-        'API_SECRET': config('API_SECRET'),
+        'CLOUD_NAME': env('CLOUD_NAME'),
+        'API_KEY': env('API_KEY'),
+        'API_SECRET': env('API_SECRET'),
     }
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -161,4 +182,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 print(f"Loaded DATABASE_URL: {config('DATABASE_URL', default='NOT FOUND')}")
 print(f"Database settings: {DATABASES}")
-
