@@ -151,3 +151,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 print(f"Loaded DATABASE_URL: {config('DATABASE_URL', default='NOT FOUND')}")
 print(f"Database settings: {DATABASES}")
+
