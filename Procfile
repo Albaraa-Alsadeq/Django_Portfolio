@@ -1,1 +1,1 @@
-web: gunicorn albaraa-portfolio.wsgi:application
+web: gunicorn albaraaportfolio.wsgi:application
