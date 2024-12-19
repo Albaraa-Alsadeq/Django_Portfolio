@@ -119,10 +119,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'portfolio_database',
+            'NAME': 'portfolioDatabase',
             'USER': 'postgres',
             'PASSWORD': '123ABczaq$',
-            'HOST': 'database-1.cdkiy46kozvg.eu-north-1.rds.amazonaws.com',
+            'HOST': 'portfoliodatabase.cdkiy46kozvg.eu-north-1.rds.amazonaws.com',
             'PORT': '5432',
         }
     }
