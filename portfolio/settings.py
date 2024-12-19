@@ -101,7 +101,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
-
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL', 'postgres://USER:PASSWORD@HOST:PORT/DBNAME')
+    )
+}
 # Database settings for development and production
 
 if DEBUG:
