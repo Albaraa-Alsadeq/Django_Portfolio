@@ -1,1 +1,1 @@
-web: gunicorn portfolio.wsgi:application
+web: gunicorn portfolio.wsgi:application --timeout 60
