@@ -129,9 +129,9 @@ else:
 
     # تكوين Cloudinary لتخزين الملفات في بيئة الإنتاج
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': env('CLOUD_NAME'),
-        'API_KEY': env('API_KEY'),
-        'API_SECRET': env('API_SECRET'),
+        'CLOUD_NAME': 'drys4dgez',
+        'API_KEY': '377643715332651',
+        'API_SECRET': 'vfoA2eMe6JHXtzM4GYXsSj-wnnI',
     }
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
